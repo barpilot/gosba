@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/barpilot/gosba/service"
-	log "github.com/sirupsen/logrus"
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 func (s *server) unbind(w http.ResponseWriter, r *http.Request) {

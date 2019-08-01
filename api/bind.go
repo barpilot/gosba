@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/barpilot/gosba/service"
-	log "github.com/sirupsen/logrus"
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 func (s *server) bind(w http.ResponseWriter, r *http.Request) {

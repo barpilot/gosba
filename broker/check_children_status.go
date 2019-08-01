@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/barpilot/gosba/service"
-	log "github.com/sirupsen/logrus"
 	"github.com/deis/async"
+	log "github.com/sirupsen/logrus"
 )
 
 func (b *broker) doCheckChildrenStatuses(

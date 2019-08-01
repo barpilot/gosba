@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/barpilot/gosba/service"
-	log "github.com/sirupsen/logrus"
 	"github.com/deis/async"
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 func (s *server) provision(w http.ResponseWriter, r *http.Request) {

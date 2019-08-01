@@ -11,9 +11,9 @@ import (
 	"github.com/barpilot/gosba/http/filter"
 	"github.com/barpilot/gosba/service"
 	"github.com/barpilot/gosba/storage"
-	log "github.com/sirupsen/logrus"
 	"github.com/deis/async"
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 type errHTTPServerStopped struct {

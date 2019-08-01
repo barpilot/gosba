@@ -8,8 +8,8 @@ import (
 	"github.com/barpilot/gosba/api"
 	"github.com/barpilot/gosba/service"
 	"github.com/barpilot/gosba/storage"
-	log "github.com/sirupsen/logrus"
 	"github.com/deis/async"
+	log "github.com/sirupsen/logrus"
 )
 
 type errAsyncEngineStopped struct {
