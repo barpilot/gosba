@@ -1,27 +1,28 @@
 package file
 
 import (
-	"fmt"
-	"go/build"
+	"io/ioutil"
+	"log"
 	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
 func TestExists(t *testing.T) {
-	gopath := os.Getenv("GOPATH")
-	if gopath == "" {
-		gopath = build.Default.GOPATH
+
+	file, err := ioutil.TempFile("", "gosba")
+	if err != nil {
+		log.Fatal(err)
 	}
-	file := fmt.Sprintf(
-		"%s/src/github.com/Azure/open-service-broker-azure/pkg/file/file_test.go",
-		gopath,
-	)
-	assert.True(t, Exists(file))
-	file = fmt.Sprintf(
-		"%s/src/github.com/Azure/open-service-broker-azure/pkg/file/bogus.go",
-		gopath,
-	)
-	assert.False(t, Exists(file))
+	defer os.Remove(file.Name())
+
+	path, err := filepath.Abs(filepath.Dir(file.Name()))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	assert.True(t, Exists(path))
+	assert.False(t, Exists(path+"false"))
 }
