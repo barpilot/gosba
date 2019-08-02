@@ -16,36 +16,6 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-// var (
-// 	fakeServiceManager service.ServiceManager
-// 	testStore          *store
-// 	config             Config
-// )
-
-// func init() {
-// 	var err error
-// 	fakeModule, err := fake.New()
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	fakeCatalog, err := fakeModule.GetCatalog()
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	fakeServiceManager = fakeModule.ServiceManager
-// 	config = NewConfigWithDefaults()
-// 	config.RedisHost = os.Getenv("STORAGE_REDIS_HOST")
-// 	config.RedisPrefix = uuid.NewV4().String()
-// 	str, err := NewStore(
-// 		fakeCatalog,
-// 		config,
-// 	)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-// 	testStore = str.(*store)
-// }
-
 // In order for 'go test' to run this suite, we need to create
 // a normal test function and pass our suite to suite.Run
 func TestStorageTestSuite(t *testing.T) {
@@ -124,13 +94,6 @@ func (suite *StorageTestSuite) TearDownSuite() {
 		log.Fatalf("Could not purge resource: %s", err)
 	}
 }
-
-// All methods that begin with "Test" are run as tests within a
-// suite.
-// func (suite *StorageTestSuite) TestExample() {
-// 	assert.Equal(suite.T(), 5, suite.VariableThatShouldStartAtFive)
-// 	suite.Equal(5, suite.VariableThatShouldStartAtFive)
-// }
 
 func (suite *StorageTestSuite) TestWriteInstance() {
 	t := suite.T()
