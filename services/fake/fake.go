@@ -57,11 +57,6 @@ func (m *Module) GetName() string {
 	return "fake"
 }
 
-// GetStability returns this module's relative stability
-func (m *Module) GetStability() service.Stability {
-	return service.StabilityStable
-}
-
 // GetProvisioner returns a provisioner that defines the steps a module must
 // execute asynchronously to provision a service
 func (s *ServiceManager) GetProvisioner(

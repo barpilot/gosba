@@ -1,31 +1,5 @@
 package service
 
-// Stability is a type that represents the relative stability of a service
-// module
-type Stability int
-
-const (
-	// StabilityExperimental represents relative stability of the most immature
-	// service modules. At this level of stability, we're not even certain we've
-	// built the right thing!
-	StabilityExperimental Stability = iota
-	// StabilityPreview represents relative stability of modules we believe are
-	// approaching a stable state.
-	StabilityPreview
-	// StabilityStable represents relative stability of the mature, production-
-	// ready service modules.
-	StabilityStable
-)
-
-const (
-	// MigrationTag is the tag of migration services. It can be used for tag
-	// filter to filter out migration services.
-	MigrationTag string = "Migration"
-	// DRTag is the tag of DR services. It can be used for tag filter to
-	// filter out DR services.
-	DRTag string = "Disaster Recovery"
-)
-
 // ProvisioningParameters wraps a map containing provisioning parameters.
 type ProvisioningParameters struct {
 	Parameters
