@@ -82,7 +82,6 @@ type PlanProperties struct {
 	Extended    map[string]interface{} `json:"-"`
 	EndOfLife   bool                   `json:"-"`
 	Schemas     PlanSchemas            `json:"schemas,omitempty"`
-	Stability   Stability              `json:"-"`
 }
 
 // ServicePlanMetadata contains metadata about the service plans
@@ -99,7 +98,6 @@ type Plan interface {
 	GetProperties() PlanProperties
 	IsEndOfLife() bool
 	GetSchemas() PlanSchemas
-	GetStability() Stability
 }
 
 type plan struct {
@@ -253,8 +251,4 @@ func (p plan) IsEndOfLife() bool {
 
 func (p plan) GetSchemas() PlanSchemas {
 	return p.Schemas
-}
-
-func (p plan) GetStability() Stability {
-	return p.Stability
 }
