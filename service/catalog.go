@@ -2,6 +2,8 @@ package service
 
 import (
 	"encoding/json"
+
+	brokerapi "github.com/pivotal-cf/brokerapi/domain"
 )
 
 // Catalog is an interface to be implemented by types that represents the
@@ -35,13 +37,15 @@ type ServiceProperties struct { // nolint: golint
 }
 
 // ServiceMetadata contains metadata about the service classes
-type ServiceMetadata struct { // nolint: golint
+type ServiceMetadata struct {
 	DisplayName         string `json:"displayName,omitempty"`
 	ImageURL            string `json:"imageUrl,omitempty"`
 	LongDescription     string `json:"longDescription,omitempty"`
 	ProviderDisplayName string `json:"providerDisplayName,omitempty"`
 	DocumentationURL    string `json:"documentationUrl,omitempty"`
 	SupportURL          string `json:"supportUrl,omitempty"`
+	AdditionalMetadata  map[string]interface{}
+	brokerapi.ServiceMetadata
 }
 
 // Service is an interface to be implemented by types that represent a single
@@ -54,7 +58,6 @@ type Service interface {
 	GetPlans() []Plan
 	GetPlan(planID string) (Plan, bool)
 	GetParentServiceID() string
-	GetChildServiceID() string
 	GetProperties() ServiceProperties
 	GetTags() []string
 	IsEndOfLife() bool
@@ -211,10 +214,6 @@ func (s service) GetPlan(planID string) (Plan, bool) {
 
 func (s service) GetParentServiceID() string {
 	return s.ParentServiceID
-}
-
-func (s service) GetChildServiceID() string {
-	return s.ChildServiceID
 }
 
 func (s service) GetProperties() ServiceProperties {
