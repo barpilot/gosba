@@ -23,6 +23,9 @@ func init() {
 	planUpdatable := false
 	free := false
 
+	sMetadata := ServiceMetadata{DisplayName: "servicetest"}
+	spMetadata := ServicePlanMetadata{DisplayName: "plantest"}
+
 	testCatalog = NewCatalog([]Service{
 		NewService(
 			ServiceProperties{
@@ -30,6 +33,7 @@ func init() {
 				ID:            id,
 				Description:   description,
 				Tags:          []string{tag},
+				Metadata:      sMetadata,
 				Bindable:      bindable,
 				PlanUpdatable: planUpdatable,
 			},
@@ -38,6 +42,7 @@ func init() {
 				ID:          id,
 				Name:        name,
 				Description: description,
+				Metadata:    spMetadata,
 				Free:        free,
 				Schemas: PlanSchemas{
 					ServiceInstances: InstanceSchemas{
@@ -75,9 +80,11 @@ func init() {
 				Name:        name,
 				Description: description,
 				Free:        free,
+				Metadata:    spMetadata,
 				EndOfLife:   true,
 			}),
 		),
+
 		NewService(
 			ServiceProperties{
 				Name:          name,
@@ -87,6 +94,7 @@ func init() {
 				Bindable:      bindable,
 				PlanUpdatable: planUpdatable,
 				EndOfLife:     true,
+				Metadata:      sMetadata,
 			},
 			nil,
 			NewPlan(PlanProperties{
@@ -95,6 +103,7 @@ func init() {
 				Description: description,
 				Free:        free,
 				EndOfLife:   true,
+				Metadata:    spMetadata,
 			}),
 		),
 	})
@@ -107,7 +116,9 @@ func init() {
 				"name":"%s",
 				"id":"%s",
 				"description":"%s",
-				"metadata":{},
+				"metadata":{
+					"displayName": "servicetest"
+				},
 				"tags":["%s"],
 				"bindable":%t,
 				"plan_updateable":%t,
@@ -117,7 +128,9 @@ func init() {
 						"name":"%s",
 						"description":"%s",
 						"free":%t,
-						"metadata":{},
+						"metadata":{
+							"displayName": "plantest"
+						},
 						"schemas": {
 							"service_instance": {
 								"create": {

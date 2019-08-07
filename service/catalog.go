@@ -2,8 +2,6 @@ package service
 
 import (
 	"encoding/json"
-
-	brokerapi "github.com/pivotal-cf/brokerapi/domain"
 )
 
 // Catalog is an interface to be implemented by types that represents the
@@ -22,13 +20,13 @@ type catalog struct {
 // instantiated and passed to the NewService() constructor function which will
 // carry out all necessary initialization.
 type ServiceProperties struct { // nolint: golint
-	Name          string          `json:"name"`
-	ID            string          `json:"id"`
-	Description   string          `json:"description"`
-	Metadata      ServiceMetadata `json:"metadata,omitempty"`
-	Tags          []string        `json:"tags"`
-	Bindable      bool            `json:"bindable"`
-	PlanUpdatable bool            `json:"plan_updateable"` // Misspelling is
+	Name          string      `json:"name"`
+	ID            string      `json:"id"`
+	Description   string      `json:"description"`
+	Metadata      interface{} `json:"metadata,omitempty"`
+	Tags          []string    `json:"tags"`
+	Bindable      bool        `json:"bindable"`
+	PlanUpdatable bool        `json:"plan_updateable"` // Misspelling is
 	// deliberate to match the spec
 	ParentServiceID string                 `json:"-"`
 	ChildServiceID  string                 `json:"-"`
@@ -44,8 +42,6 @@ type ServiceMetadata struct {
 	ProviderDisplayName string `json:"providerDisplayName,omitempty"`
 	DocumentationURL    string `json:"documentationUrl,omitempty"`
 	SupportURL          string `json:"supportUrl,omitempty"`
-	AdditionalMetadata  map[string]interface{}
-	brokerapi.ServiceMetadata
 }
 
 // Service is an interface to be implemented by types that represent a single
@@ -78,7 +74,7 @@ type PlanProperties struct {
 	Name        string                 `json:"name"`
 	Description string                 `json:"description"`
 	Free        bool                   `json:"free"`
-	Metadata    ServicePlanMetadata    `json:"metadata,omitempty"` // nolint: lll
+	Metadata    interface{}            `json:"metadata,omitempty"` // nolint: lll
 	Extended    map[string]interface{} `json:"-"`
 	EndOfLife   bool                   `json:"-"`
 	Schemas     PlanSchemas            `json:"schemas,omitempty"`
